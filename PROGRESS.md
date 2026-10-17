@@ -51,25 +51,34 @@ Project plan: `../Display_Board_Plan.pdf`. Code lives in this `board/` dir.
   before; combined with Zone A down to 7, total outside Zone C is ~20.
   Worm chart differentiates innings with solid vs dashed stroke + a
   text legend ("solid"/"dashed") so it reads colour-blind. Ball/latency
-  dev strip removed from public board (still on `/admin`).
+  dev strip removed from public board (still on `/admin`). Top-scorers
+  panel in Zone C filters out current batters so it no longer duplicates
+  Zone B early in each innings.
+- **Pilot materials prepared** (plan Week-4) — chose IPL 2019 match
+  **1178418** (KKR 175/6 → RR 177/7, chased in 20.2); copied the raw
+  JSON into `data/matches/` so admin lists it. `study/pilot/` holds
+  a filled task-sheet with pause cues locked to specific overs
+  (10, 12, 17), a filled recall-quiz with ground-truth answers for
+  Q1–Q4, and a run-sheet README that lists the two blanks (Q5 insight
+  list, Q6 win-prob bucket) that must be filled during the dry-run.
 
 ## Start next session here
 
 Pick one of these — in rough order of deadline:
 
-1. **Visual check against the projector** — ~30 min. All polish changes
-   so far are font-size and content cuts; they're correct in theory but
-   the real target is "readable at 10 m on the venue projector".
-   Project the board, stand at 3/6/10 m with the `legibility-protocol`
-   sheet, and bump sizes again if Zone A target line or Zone E insight
-   fail to read at 10 m.
-2. **Pilot the lab study on 2 people** (plan Week-4) — ~1 h. Run
-   `study/README.md` end-to-end once with a lab-mate, confirm the
-   ≈45-min budget holds, and fill the match-specific blanks in
-   `study/task-sheet.md` + `study/recall-quiz.md` with the chosen
-   match's ground truth.
+1. **Run the pilot** (plan Week-4) — ~1 h, needs a lab-mate + the
+   projector. Follow `study/pilot/README.md`. The outputs you must
+   bring back for v1: (a) time budget held / blew; (b) three insight
+   texts for recall-quiz Q5 ground truth; (c) win-prob bucket at the
+   end of over 17 of the chase for recall-quiz Q6; (d) any blocker or
+   major finding on the board or facilitator flow.
+2. **Visual check against the projector** — ~30 min; naturally
+   piggybacks on the pilot's legibility-test step. If Zone A target
+   line or Zone E insight fail to read at 10 m, bump sizes again
+   before the real v1 run.
 3. **Demo video** (Week-5 deliverable) — ~2 h. 3-minute capture of a
-   full chase with insights firing.
+   full chase with insights firing. Match 1178418 makes a great subject
+   given the last-over finish.
 4. **v2 polish** after the lab study runs — scope depends on findings.
 
 ## Commands cheat sheet
