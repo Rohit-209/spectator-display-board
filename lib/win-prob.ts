@@ -1,4 +1,35 @@
 import type { MatchState } from "./types";
+import coeffs from "./win-prob-coeffs.json";
+
+type Coeffs = {
+  model: "logreg";
+  features: string[];
+  scaler_mean: number[];
+  scaler_scale: number[];
+  coef: number[];
+  intercept: number;
+};
+
+const C = coeffs as Coeffs;
+
+function sigmoid(z: number): number {
+  if (z >= 0) {
+    const e = Math.exp(-z);
+    return 1 / (1 + e);
+  }
+  const e = Math.exp(z);
+  return e / (1 + e);
+}
+
+function featureVector(
+  runsNeeded: number,
+  ballsRemaining: number,
+  wicketsInHand: number,
+  rrr: number,
+  crr: number,
+): number[] {
+  return [runsNeeded, ballsRemaining, wicketsInHand, rrr, crr];
+}
 
 export function winProbability(state: MatchState):
   | { battingTeam: number; bowlingTeam: number }
@@ -22,14 +53,13 @@ export function winProbability(state: MatchState):
   const rrr = (runsNeeded / ballsRemaining) * 6;
   const crr = inn.legalBallsTotal > 0 ? (inn.runs / inn.legalBallsTotal) * 6 : 0;
 
-  const z =
-    1.6 -
-    0.28 * (rrr - 8) +
-    0.22 * (wicketsInHand - 5) +
-    0.015 * (ballsRemaining - 60) +
-    0.08 * (crr - 8);
-
-  const p = 1 / (1 + Math.exp(-z));
+  const x = featureVector(runsNeeded, ballsRemaining, wicketsInHand, rrr, crr);
+  let z = C.intercept;
+  for (let i = 0; i < x.length; i++) {
+    const scaled = (x[i] - C.scaler_mean[i]) / C.scaler_scale[i];
+    z += C.coef[i] * scaled;
+  }
+  const p = sigmoid(z);
   const clamped = Math.max(0.01, Math.min(0.99, p));
   return { battingTeam: clamped, bowlingTeam: 1 - clamped };
 }

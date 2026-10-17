@@ -6,6 +6,7 @@ import { ZoneB } from "@/components/ZoneB";
 import { ZoneC } from "@/components/ZoneC";
 import { ZoneD } from "@/components/ZoneD";
 import { ZoneE } from "@/components/ZoneE";
+import { BoardQR } from "@/components/BoardQR";
 
 export default function BoardPage() {
   const { state, status, insight, latencyMs } = useStream();
@@ -52,6 +53,7 @@ export default function BoardPage() {
           </Link>
         </span>
       </div>
+      <BoardQR />
     </main>
   );
 }

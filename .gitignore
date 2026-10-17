@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# model training (large raw data + venv kept local; coeffs are committed)
+/model/.venv
+/model/data/raw
+
+# SQLite DB (matches, aggregates, audit, engagement — populated at runtime)
+/data/board.db
+/data/board.db-wal
+/data/board.db-shm
+# legacy JSONL logs (superseded by SQLite but may exist locally)
+/data/insight-audit.jsonl
+/data/engagement.jsonl

@@ -47,9 +47,12 @@ export function parseCricsheetMatch(
   const events: BallEvent[] = [];
   let globalBallIndex = 0;
 
-  for (let i = 0; i < match.innings.length; i++) {
+  // Super overs (and any further sub-innings) are out of scope for the
+  // display board — only innings 1 and 2 are modelled.
+  const mainInnings = match.innings.slice(0, 2);
+  for (let i = 0; i < mainInnings.length; i++) {
     const innings = (i + 1) as 1 | 2;
-    const inningsData = match.innings[i];
+    const inningsData = mainInnings[i];
     let legalBallInOver = 0;
     let prevOver = -1;
 

@@ -148,7 +148,8 @@ function applyToInnings(innings: InningsState, event: BallEvent): InningsState {
     out.isOut = true;
     out.outDescription = describeWicket(event);
     next.batters[event.playerOut] = out;
-    bowler.wickets += 1;
+    // Run-outs and similar non-bowler dismissals don't count toward figures.
+    if (isBowlerCredited(event.wicketKind)) bowler.wickets += 1;
     next.wickets += 1;
     next.wicketsPerOver[event.over] += 1;
     next.partnership = {
@@ -182,6 +183,21 @@ function applyToInnings(innings: InningsState, event: BallEvent): InningsState {
 function describeWicket(event: BallEvent): string {
   const kind = event.wicketKind ?? "out";
   return `${kind} b ${event.bowler}`;
+}
+
+const NON_BOWLER_DISMISSALS = new Set([
+  "run out",
+  "retired hurt",
+  "retired out",
+  "retired not out",
+  "obstructing the field",
+  "timed out",
+  "handled the ball",
+]);
+
+function isBowlerCredited(kind: string | null): boolean {
+  if (!kind) return false;
+  return !NON_BOWLER_DISMISSALS.has(kind);
 }
 
 function resolveStriker(event: BallEvent): string {

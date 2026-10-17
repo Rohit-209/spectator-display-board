@@ -1,6 +1,7 @@
 import { generateObject } from "ai";
 import { z } from "zod";
 import type { InsightMessage, MatchState } from "./types";
+import { appendAudit } from "./insight-audit";
 
 type FactPack = {
   trigger: string;
@@ -50,14 +51,41 @@ export async function maybeGenerateInsight(
   const sinceLast = overIndex - mem.lastInsightOverIndex;
   if (factPack.trigger !== "wicket" && sinceLast < 2) return null;
 
-  const text = await callLLM(factPack).catch(() => null);
+  const llmAttempted = !!process.env.AI_GATEWAY_API_KEY;
+  const llmResult = llmAttempted
+    ? await callLLM(factPack).catch((err: unknown) => ({
+        text: null,
+        error: err instanceof Error ? err.message : String(err),
+      }))
+    : { text: null, error: "no_api_key" as const };
 
+  let validatorPassed: boolean | null = null;
   let source: InsightMessage["source"] = "llm";
-  let finalText = text;
-  if (!finalText || !validateNumbers(finalText, factPack)) {
+  let finalText = llmResult.text;
+  if (finalText) {
+    validatorPassed = validateNumbers(finalText, factPack);
+    if (!validatorPassed) {
+      finalText = templateFallback(factPack);
+      source = "template";
+    }
+  } else {
     finalText = templateFallback(factPack);
     source = "template";
   }
+
+  appendAudit({
+    ts: Date.now(),
+    matchId: state.meta.matchId,
+    trigger: factPack.trigger,
+    over: `${state.lastEvent.over}.${state.lastEvent.legalBallInOver}`,
+    factPack: factPack.facts,
+    llmAttempted,
+    llmText: llmResult.text,
+    llmError: llmAttempted ? llmResult.error : "no_api_key",
+    validatorPassed,
+    source,
+    finalText,
+  });
 
   mem.lastInsightOverIndex = overIndex;
   mem.lastEmitBall = state.lastEvent.globalBallIndex;
@@ -158,20 +186,22 @@ const InsightSchema = z.object({
   factKeys: z.array(z.string()),
 });
 
-async function callLLM(factPack: FactPack): Promise<string | null> {
-  if (!process.env.AI_GATEWAY_API_KEY) {
-    return null;
-  }
+type LLMResult = { text: string | null; error: string | null };
+
+async function callLLM(factPack: FactPack): Promise<LLMResult> {
   try {
     const { object } = await generateObject({
       model: "anthropic/claude-haiku-4-5",
       schema: InsightSchema,
       prompt: buildPrompt(factPack),
     });
-    return object.insight;
+    return { text: object.insight, error: null };
   } catch (err) {
     console.error("llm call failed", err);
-    return null;
+    return {
+      text: null,
+      error: err instanceof Error ? err.message : "api_error",
+    };
   }
 }
 

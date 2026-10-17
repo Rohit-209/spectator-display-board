@@ -1,0 +1,13 @@
+{
+  "n_matches_total": 1211,
+  "n_rows_train": 123302,
+  "n_rows_test": 16169,
+  "test_seasons": [
+    "2025",
+    "2026"
+  ],
+  "brier_full": 0.13902258035240977,
+  "logloss_full": 0.4238066221869178,
+  "brier_baseline_rrr_only": 0.14810246497183285,
+  "logloss_baseline_rrr_only": 0.45311693730555247
+}

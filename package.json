@@ -5,22 +5,31 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "vitest run",
+    "test:full": "MATCH_SOURCE=model/data/raw MATCH_SAMPLE=20 vitest run",
+    "db:ingest": "tsx scripts/ingest.ts"
   },
   "dependencies": {
     "@ai-sdk/gateway": "^4.0.113",
+    "@types/qrcode": "^1.5.6",
     "ai": "^7.0.140",
+    "better-sqlite3": "^13.0.3",
     "next": "16.4.0",
+    "qrcode": "^1.5.4",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
+    "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^2.1.9"
   }
 }
