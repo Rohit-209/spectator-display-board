@@ -23,25 +23,20 @@ sub-claims below with concrete evidence; the rubric names
   raw JSON corpus (1,243 matches → 743 career records + 2,989
   batter-season rows).
 
-## 8.2 Coded demo (video evidence)
-
-- **Hosted demo video (3 minutes):** <HOSTED-URL-HERE>
-  Captures a live replay of IPL 2019 KKR v RR (match #1178418), the
-  rotating feature panel on Zone C, win-probability movement in
-  Zone D, an LLM insight firing in Zone E, and the companion mobile
-  view opened via QR. Capture settings: QuickTime 1920 × 1080,
-  speed set to 20× for a full chase, trimmed to the dramatic
-  passages.
-
-  *Fill the URL above with your YouTube-unlisted or Google-Drive link
-  before submitting. Keep both an archival local copy
-  (`report/figures/demo.mp4`) and the public link.*
+## 8.2 Coded demo (public repository)
 
 - **Public code repository:**
   <https://github.com/Rohit-209/spectator-display-board>
-  Six commits, authored under the student's GitHub identity. README
-  explains the launch sequence, test harness, model retrain path,
-  and the lab-study materials under `study/`.
+  Full source for the board, replay engine, stats engine, win-prob
+  trainer, insight pipeline, SQLite ingestion, and the usability-study
+  materials. README explains the launch sequence, test harness, and
+  model retrain path. Commits are authored under the student's
+  GitHub identity.
+- **Reproducibility:** `npm install && npm run db:ingest && npm run dev`
+  starts the board on `localhost:3000` with three bundled IPL matches
+  — no API key, no model training, no external services required.
+- *(A 3-minute walkthrough video is a planned addition; link to be
+  attached if produced before submission.)*
 
 ## 8.3 Hardware
 

@@ -48,4 +48,5 @@ or unavailable.
 
 **Impact.** The architecture turns broadcast-grade overlays into
 infrastructure that smaller venues can deploy without a production
-truck. Code and demo video: <https://github.com/Rohit-209/spectator-display-board>.
+truck. Full source and reproducible setup:
+<https://github.com/Rohit-209/spectator-display-board>.

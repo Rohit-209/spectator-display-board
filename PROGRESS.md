@@ -62,24 +62,39 @@ Project plan: `../Display_Board_Plan.pdf`. Code lives in this `board/` dir.
   Q1–Q4, and a run-sheet README that lists the two blanks (Q5 insight
   list, Q6 win-prob bucket) that must be filled during the dry-run.
 
+## Assignment-2 context (added 2026-10-17)
+
+The actual deliverable is a **12–15 page PDF** on Nalanda (max 8 per the
+first paragraph of the brief — confirm with the prof). The engineering
+built here is now the §4/§5/§8 evidence base, not the deliverable.
+Scaffold lives in `report/`; see `report/README.md` for the section map
+and build recipe. Demo video is **deferred** — the +10% bonus can
+still be claimed via AI/ML integration alone; add the video later if
+time allows.
+
 ## Start next session here
 
-Pick one of these — in rough order of deadline:
+Pick one of these — in rough order of deadline (14 days to 31 Oct 2026
+if that's the real due date):
 
-1. **Run the pilot** (plan Week-4) — ~1 h, needs a lab-mate + the
-   projector. Follow `study/pilot/README.md`. The outputs you must
-   bring back for v1: (a) time budget held / blew; (b) three insight
-   texts for recall-quiz Q5 ground truth; (c) win-prob bucket at the
-   end of over 17 of the chase for recall-quiz Q6; (d) any blocker or
-   major finding on the board or facilitator flow.
-2. **Visual check against the projector** — ~30 min; naturally
-   piggybacks on the pilot's legibility-test step. If Zone A target
-   line or Zone E insight fail to read at 10 m, bump sizes again
-   before the real v1 run.
-3. **Demo video** (Week-5 deliverable) — ~2 h. 3-minute capture of a
-   full chase with insights firing. Match 1178418 makes a great subject
-   given the last-over finish.
-4. **v2 polish** after the lab study runs — scope depends on findings.
+1. **Confirm deadline + page cap with the prof/Nalanda** — ~15 min.
+   The PDF says "31 Oct 2025" but the semester header says Sem-I
+   2026-27; everything else hangs on resolving this.
+2. **Write the report** — ~8–10 h total. Fill `report/*.md` in the
+   priority order laid out in `report/README.md` (§4 and §5 first,
+   then §2/§3, then §1/§6/§7, then §0/§8/references). Compile with
+   Pandoc per the recipe in the README, or paste into Word for final
+   layout.
+3. **Capture report screenshots** — ~30 min. The list is in
+   `report/README.md`: full board mid-chase, admin dashboard,
+   companion mobile, calibration PNG (already in `model/out/`),
+   architecture diagram redrawn in Excalidraw.
+4. **Run the pilot lab study** (optional, strengthens §5) — ~1 h,
+   needs a lab-mate + projector. Follow `study/pilot/README.md`.
+   Also doubles as the projector legibility check.
+5. **Demo video** — **deferred**. ~2–3 h when you want it. 3-minute
+   capture of a full chase with insights firing; adds depth to the §8
+   bonus claim.
 
 ## Commands cheat sheet
 
