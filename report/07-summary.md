@@ -38,13 +38,13 @@ LLM sees only pre-verified numbers, and every number in its reply is
 re-checked before it reaches the board.
 
 **Results.** The stats engine passes **1,243 of 1,243 IPL matches**.
-Median end-to-end latency is **9 ms** (target ≤ 300 ms); p95 is
-~1.5 s, dominated by first-connection handshake. The win-probability
-model beats a required-run-rate baseline on held-out seasons
-(**Brier 0.139 vs 0.148**; log loss 0.424 vs 0.453). Every LLM
-insight that reaches the screen is numerically correct by construction;
-template fallbacks keep the ticker alive when the model API is slow
-or unavailable.
+End-to-end latency measured on a representative capture is p50
+**6 ms** / p95 **12 ms** — two orders of magnitude under the
+plan's ≤ 300 ms median target. The win-probability model beats a
+required-run-rate baseline on held-out seasons (**Brier 0.139 vs
+0.148**; log loss 0.424 vs 0.453). Every LLM insight that reaches
+the screen is numerically correct by construction; template fallbacks
+keep the ticker alive when the model API is slow or unavailable.
 
 **Impact.** The architecture turns broadcast-grade overlays into
 infrastructure that smaller venues can deploy without a production

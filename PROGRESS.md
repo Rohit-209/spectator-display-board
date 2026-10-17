@@ -62,39 +62,44 @@ Project plan: `../Display_Board_Plan.pdf`. Code lives in this `board/` dir.
   Q1–Q4, and a run-sheet README that lists the two blanks (Q5 insight
   list, Q6 win-prob bucket) that must be filled during the dry-run.
 
-## Assignment-2 context (added 2026-10-17)
+## Assignment-2 context (updated 2026-10-17)
 
-The actual deliverable is a **12–15 page PDF** on Nalanda (max 8 per the
-first paragraph of the brief — confirm with the prof). The engineering
-built here is now the §4/§5/§8 evidence base, not the deliverable.
-Scaffold lives in `report/`; see `report/README.md` for the section map
-and build recipe. Demo video is **deferred** — the +10% bonus can
-still be claimed via AI/ML integration alone; add the video later if
-time allows.
+- **Deadline: 31 October 2026** (confirmed, ~14 days away).
+- **Hard 8-page cap, one page per section.** The brief's "12-15 pages
+  / 3500 words" line was overridden by the first-paragraph cap +
+  per-section-new-page rule. Report now budgets ~2000 words of
+  self-written text total.
+- Demo video is **deferred** — §8 bonus still claims +10 % via AI/ML
+  integration + public code.
+- **Report figures auto-captured.** `scripts/capture-screenshots.ts`
+  produces 7 PNGs under `report/figures/` from a 20× replay of match
+  1178418. Admin dashboard shows p50 6 ms / p95 12 ms over 17 samples,
+  insight audit 7/7 template fallbacks (no LLM key in capture env).
+- Scaffold lives in `report/`; see `report/README.md` for the updated
+  section map, folded §8 strategy, and writing order.
 
 ## Start next session here
 
 Pick one of these — in rough order of deadline (14 days to 31 Oct 2026
 if that's the real due date):
 
-1. **Confirm deadline + page cap with the prof/Nalanda** — ~15 min.
-   The PDF says "31 Oct 2025" but the semester header says Sem-I
-   2026-27; everything else hangs on resolving this.
-2. **Write the report** — ~8–10 h total. Fill `report/*.md` in the
-   priority order laid out in `report/README.md` (§4 and §5 first,
-   then §2/§3, then §1/§6/§7, then §0/§8/references). Compile with
-   Pandoc per the recipe in the README, or paste into Word for final
-   layout.
-3. **Capture report screenshots** — ~30 min. The list is in
-   `report/README.md`: full board mid-chase, admin dashboard,
-   companion mobile, calibration PNG (already in `model/out/`),
-   architecture diagram redrawn in Excalidraw.
-4. **Run the pilot lab study** (optional, strengthens §5) — ~1 h,
-   needs a lab-mate + projector. Follow `study/pilot/README.md`.
-   Also doubles as the projector legibility check.
-5. **Demo video** — **deferred**. ~2–3 h when you want it. 3-minute
-   capture of a full chase with insights firing; adds depth to the §8
-   bonus claim.
+1. **Trim the §4 and §5 drafts to one page each.** This is the single
+   highest-leverage work (50 % of marks). Current drafts are 2-3x too
+   long. Decide which two figures go in §4 (recommend `board-full.png`
+   + `admin-dashboard.png`) and which one in §5 (`calibration.png`).
+2. **Redraw the §2 architecture diagram** in Excalidraw / Figma;
+   export to `report/figures/architecture.png`. ~20 min.
+3. **Fill in the two IEEE references** in §1 and the GitHub URL +
+   student IDs in §0 and §8-folded line.
+4. **Write the report prose** across all 8 sections — ~6–8 h total,
+   compile with Pandoc per `report/README.md` or paste into Word.
+5. **(Optional)** Re-capture `admin-dashboard.png` with
+   `AI_GATEWAY_API_KEY` set so the insight-audit panel shows real LLM
+   vs template vs rejection stats instead of 7/7 template fallback.
+6. **(Optional)** Pilot the lab study (`study/pilot/README.md`) if
+   time allows — doesn't fit on the §5 page but strengthens defence
+   in the viva.
+7. **Demo video** — deferred.
 
 ## Commands cheat sheet
 

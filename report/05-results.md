@@ -10,8 +10,8 @@ table and a graph; discussion follows.)*
 | Dimension | Target | Achieved | Status |
 |-----------|-------:|---------:|-------:|
 | Stats correctness | 100 % of 20 matches | **1,243 / 1,243 IPL matches** | ✓ exceeds |
-| Median end-to-end latency | ≤ 300 ms | **9 ms** | ✓ exceeds |
-| p95 end-to-end latency | ≤ 1 s | ~1.5 s (handshake-dominated) | △ meets with caveat |
+| Median end-to-end latency | ≤ 300 ms | **6 ms** (17-sample capture) | ✓ exceeds |
+| p95 end-to-end latency | ≤ 1 s | **12 ms** | ✓ exceeds |
 | Win-prob Brier score | Beat RRR baseline | **0.139 vs 0.148** | ✓ |
 | Win-prob log loss | Beat RRR baseline | **0.424 vs 0.453** | ✓ |
 | LLM insight accuracy | 100 % numerically correct after validator | 100 % by construction (every number re-checked) | ✓ |

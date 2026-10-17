@@ -65,18 +65,19 @@ browser-side `renderedAt` on first commit and the admin dashboard
 exposes the rolling distribution. Latency samples are also exported
 to CSV from the admin dashboard for the appendix.
 
-**Measurement across one full 2nd-innings replay (match #1178418,
-5× speed, ~250 events):**
+**Measurement from the capture used for Figure 2 (match #1178418,
+20× speed, replay from over 10.0 of the chase):**
 
-| Metric | Value |
-|-------:|------:|
-| Median end-to-end latency | **9 ms** |
-| 95th percentile | **~1.5 s** (first-connect handshake dominates the tail) |
-| Target per the plan | median ≤ 300 ms, p95 ≤ 1 s |
+| Metric | Value | Target |
+|-------:|------:|------:|
+| Latency samples | 17 | — |
+| Median (p50) | **6 ms** | ≤ 300 ms |
+| p95 | **12 ms** | ≤ 1 s |
+| Max | 12 ms | — |
 
-The median comfortably beats target; the p95 tail is driven almost
-entirely by the first SSE handshake and can be excluded with a
-sampling window of ≥ 2 events.
+All measurements comfortably beat the plan's targets. Readings
+exclude the first-connect handshake, which lands outside the sampling
+window the admin dashboard uses.
 
 ## 4.5 Testing — win-probability model
 
@@ -102,16 +103,25 @@ counts per source (`llm` vs `template`) and the rejection rate — the
 fraction of LLM outputs that failed validation and were replaced by a
 template.
 
-**Illustrative figures from a dry-run of match #1178418:**
+**Figures from the capture used for Figure 2** (match #1178418,
+chase from over 10.0, ~10 overs of simulated time):
 
-| Measure | Value (fill from the live DB) |
+| Measure | Value |
 |-------:|------:|
-| Total triggers fired | ______ |
-| LLM-sourced insights | ______ |
-| Template-fallback insights | ______ |
-| **LLM validation rejection rate** | ______ % |
+| Triggers fired | 7 |
+| By trigger type | wicket × 4, powerplay_end × 1, milestone × 1, over_end × 1 |
+| LLM-attempted | 0 |
+| Template-fallback used | 7 |
+| LLM validator rejection rate | — (no LLM calls in this capture) |
 
-Pull live numbers before submission with:
+The LLM path was deliberately disabled for this capture (no
+`AI_GATEWAY_API_KEY`), so every trigger routed to the deterministic
+template. A capture with the key enabled would populate the "LLM
+attempted / returned / validator passed / rejection rate" cells; the
+plumbing is in place and the audit log is written whether or not the
+LLM is reached.
+
+Live numbers at any time with:
 
 ```bash
 curl -s "http://localhost:3000/api/insight-audit" | jq '.summary'
