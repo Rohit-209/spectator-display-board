@@ -33,24 +33,24 @@ export function ZoneA({ state }: { state: MatchState }) {
       <div className="text-right text-slate-200">
         {state.target !== null ? (
           <>
-            <div className="text-xl">
-              Target{" "}
-              <span className="font-bold text-accent-2">{state.target}</span>{" "}
-              <span className="text-slate-400">·</span> Need{" "}
-              <span className="font-bold text-accent-2">{runsNeeded}</span> off{" "}
-              <span className="font-bold text-accent-2">{ballsRemaining}</span>
+            <div className="text-3xl font-semibold tabular">
+              Need{" "}
+              <span className="font-black text-accent-2">{runsNeeded}</span>
+              <span className="text-slate-400"> off </span>
+              <span className="font-black text-accent-2">{ballsRemaining}</span>
             </div>
-            <div className="text-base text-slate-400 tabular">
-              CRR {crr.toFixed(2)} &nbsp; RRR {rrr === null ? "—" : rrr.toFixed(2)}
+            <div className="text-lg text-slate-400 tabular mt-1">
+              Target {state.target} · RRR{" "}
+              {rrr === null ? "—" : rrr.toFixed(2)}
             </div>
           </>
         ) : (
           <>
-            <div className="text-xl text-slate-400">1st innings</div>
-            <div className="text-base text-slate-400 tabular">
+            <div className="text-3xl font-semibold text-slate-300">1st innings</div>
+            <div className="text-lg text-slate-400 tabular mt-1">
               CRR {crr.toFixed(2)}
               {state.projectedScore !== null && (
-                <> &nbsp; Proj {state.projectedScore}</>
+                <> · Proj {state.projectedScore}</>
               )}
             </div>
           </>

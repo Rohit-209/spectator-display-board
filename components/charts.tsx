@@ -57,13 +57,19 @@ export function WormChart({ state }: { state: MatchState }) {
             </text>
           </g>
         ))}
-      <path d={linePath(first)} stroke="#38bdf8" fill="none" strokeWidth={2.5} />
+      <path
+        d={linePath(first)}
+        stroke="#38bdf8"
+        fill="none"
+        strokeWidth={3}
+      />
       {second && (
         <path
           d={linePath(second)}
           stroke="#f59e0b"
           fill="none"
-          strokeWidth={2.5}
+          strokeWidth={3}
+          strokeDasharray="8 5"
         />
       )}
       {state.target !== null && (
@@ -77,13 +83,34 @@ export function WormChart({ state }: { state: MatchState }) {
           strokeWidth={1}
         />
       )}
-      <text x={padL} y={padT + 10} fontSize={11} fill="#38bdf8">
-        {first.team}
-      </text>
-      {second && (
-        <text x={padL + 90} y={padT + 10} fontSize={11} fill="#f59e0b">
-          {second.team}
+      <g>
+        <line
+          x1={padL}
+          x2={padL + 24}
+          y1={padT + 6}
+          y2={padT + 6}
+          stroke="#38bdf8"
+          strokeWidth={3}
+        />
+        <text x={padL + 30} y={padT + 10} fontSize={13} fill="#e2e8f0">
+          {first.team} (solid)
         </text>
+      </g>
+      {second && (
+        <g>
+          <line
+            x1={padL + 180}
+            x2={padL + 204}
+            y1={padT + 6}
+            y2={padT + 6}
+            stroke="#f59e0b"
+            strokeWidth={3}
+            strokeDasharray="6 4"
+          />
+          <text x={padL + 210} y={padT + 10} fontSize={13} fill="#e2e8f0">
+            {second.team} (dashed)
+          </text>
+        </g>
       )}
     </svg>
   );
@@ -212,14 +239,19 @@ export function PhaseCompare({ state }: { state: MatchState }) {
 export function HeadToHead({ state }: { state: MatchState }) {
   const inn =
     state.currentInnings === 1 ? state.firstInnings : state.secondInnings!;
+  const atCrease = new Set(
+    [inn.currentStriker, inn.currentNonStriker].filter(
+      (n): n is string => n !== null,
+    ),
+  );
   const top = Object.values(inn.batters)
-    .filter((b) => b.balls > 0)
+    .filter((b) => b.balls > 0 && !atCrease.has(b.name))
     .sort((a, b) => b.runs - a.runs)
     .slice(0, 2);
   if (top.length < 2) {
     return (
-      <div className="w-full h-full flex items-center justify-center text-slate-500">
-        Head-to-head — waiting for second batter
+      <div className="w-full h-full flex items-center justify-center text-slate-500 text-lg">
+        Top scorers — waiting for more batters
       </div>
     );
   }
@@ -227,13 +259,10 @@ export function HeadToHead({ state }: { state: MatchState }) {
     <div className="w-full h-full px-6 py-4 grid grid-cols-2 gap-6">
       {top.map((b) => (
         <div key={b.name} className="bg-slate-900/50 rounded-lg p-4 text-center">
-          <div className="text-sm text-slate-400 truncate">{b.name}</div>
+          <div className="text-base text-slate-300 truncate">{b.name}</div>
           <div className="text-5xl font-black tabular">{b.runs}</div>
           <div className="text-sm text-slate-400 tabular">
-            ({b.balls}) SR {b.strikeRate.toFixed(1)}
-          </div>
-          <div className="text-xs text-slate-500 tabular mt-1">
-            4s {b.fours} · 6s {b.sixes}
+            ({b.balls}) SR {b.strikeRate.toFixed(0)}
           </div>
         </div>
       ))}

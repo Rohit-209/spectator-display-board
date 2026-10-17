@@ -9,7 +9,7 @@ import { ZoneE } from "@/components/ZoneE";
 import { BoardQR } from "@/components/BoardQR";
 
 export default function BoardPage() {
-  const { state, status, insight, latencyMs } = useStream();
+  const { state, status, insight } = useStream();
 
   if (!state || !status?.loaded) {
     return (
@@ -37,21 +37,6 @@ export default function BoardPage() {
         <ZoneC state={state} />
         <ZoneD state={state} />
         <ZoneE insight={insight} />
-      </div>
-      <div className="max-w-[1680px] mx-auto mt-4 text-xs text-slate-500 flex gap-6 justify-between">
-        <span>
-          Ball {status.cursor}/{status.total} · speed {status.speed}x ·{" "}
-          {status.playing ? "playing" : status.completed ? "complete" : "paused"}
-        </span>
-        <span>
-          {latencyMs !== null && `latency ${latencyMs}ms`}{" "}
-          <Link
-            href="/admin"
-            className="underline text-slate-400 hover:text-slate-200 ml-4"
-          >
-            Admin
-          </Link>
-        </span>
       </div>
       <BoardQR />
     </main>

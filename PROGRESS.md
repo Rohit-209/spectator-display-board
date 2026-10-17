@@ -44,21 +44,30 @@ Project plan: `../Display_Board_Plan.pdf`. Code lives in this `board/` dir.
   (6 tasks with cue points and expected answers), legibility protocol
   (3/6/10 m), 10-item SUS, 12-item adapted UES-SF, 6-question recall
   quiz template, observer sheet. All markdown; print-ready.
+- **Board legibility polish v1** (plan §4) — Zone A target line bumped
+  to `text-3xl`, RRR to `text-lg` (both for 10 m reading); Zone E
+  insight bumped to `text-4xl`. Zone B stripped of 4s/6s/econ/extras
+  (companion `/m` page carries the detail) — ~11 numbers now vs ~22
+  before; combined with Zone A down to 7, total outside Zone C is ~20.
+  Worm chart differentiates innings with solid vs dashed stroke + a
+  text legend ("solid"/"dashed") so it reads colour-blind. Ball/latency
+  dev strip removed from public board (still on `/admin`).
 
 ## Start next session here
 
 Pick one of these — in rough order of deadline:
 
-1. **Pilot the lab study on 2 people** (plan Week-4) — ~1 h. The paper
-   is written; run `study/README.md` end-to-end once with a lab-mate,
-   confirm the ≈45-min budget holds, and fill the match-specific blanks
-   in `study/task-sheet.md` + `study/recall-quiz.md` with the chosen
+1. **Visual check against the projector** — ~30 min. All polish changes
+   so far are font-size and content cuts; they're correct in theory but
+   the real target is "readable at 10 m on the venue projector".
+   Project the board, stand at 3/6/10 m with the `legibility-protocol`
+   sheet, and bump sizes again if Zone A target line or Zone E insight
+   fail to read at 10 m.
+2. **Pilot the lab study on 2 people** (plan Week-4) — ~1 h. Run
+   `study/README.md` end-to-end once with a lab-mate, confirm the
+   ≈45-min budget holds, and fill the match-specific blanks in
+   `study/task-sheet.md` + `study/recall-quiz.md` with the chosen
    match's ground truth.
-2. **Board polish for legibility** (plan §4 design rules) — ~2–3 h.
-   10 m text-size audit, enforce ≤7 numbers outside Zone C, colour-blind
-   label pairings, remove any continuous animation. Do this *before* the
-   real v1 participants so the legibility test has a shot of passing at
-   10 m.
 3. **Demo video** (Week-5 deliverable) — ~2 h. 3-minute capture of a
    full chase with insights firing.
 4. **v2 polish** after the lab study runs — scope depends on findings.
