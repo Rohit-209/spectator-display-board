@@ -39,18 +39,26 @@ Project plan: `../Display_Board_Plan.pdf`. Code lives in this `board/` dir.
   average") — `/api/compare?batter=X&matchId=Y` returns season + career
   stats; companion batting tab colour-codes live SR against season and
   career SR.
+- **Lab-study materials** (plan §5.2) under `study/` — README +
+  facilitator script, consent form, intake questionnaire, task sheet
+  (6 tasks with cue points and expected answers), legibility protocol
+  (3/6/10 m), 10-item SUS, 12-item adapted UES-SF, 6-question recall
+  quiz template, observer sheet. All markdown; print-ready.
 
 ## Start next session here
 
 Pick one of these — in rough order of deadline:
 
-1. **Lab-study materials** (plan §5.2, Week-4 evaluate) — half a day. Write
-   non-code deliverables under `study/`: task sheet (6 tasks from §5.2),
-   consent form, SUS (10-item), UES-SF (adapted), 6-question recall quiz,
-   legibility protocol (3 m / 6 m / 10 m), observer sheet.
+1. **Pilot the lab study on 2 people** (plan Week-4) — ~1 h. The paper
+   is written; run `study/README.md` end-to-end once with a lab-mate,
+   confirm the ≈45-min budget holds, and fill the match-specific blanks
+   in `study/task-sheet.md` + `study/recall-quiz.md` with the chosen
+   match's ground truth.
 2. **Board polish for legibility** (plan §4 design rules) — ~2–3 h.
    10 m text-size audit, enforce ≤7 numbers outside Zone C, colour-blind
-   label pairings, remove any continuous animation.
+   label pairings, remove any continuous animation. Do this *before* the
+   real v1 participants so the legibility test has a shot of passing at
+   10 m.
 3. **Demo video** (Week-5 deliverable) — ~2 h. 3-minute capture of a
    full chase with insights firing.
 4. **v2 polish** after the lab study runs — scope depends on findings.
