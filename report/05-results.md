@@ -2,6 +2,12 @@
 
 # Section 5 — Results and Discussion
 
+<div class="stat-row">
+<div class="stat"><div class="stat-value">1,243 / 1,243</div><div class="stat-label">IPL matches pass the stats-engine correctness harness</div></div>
+<div class="stat"><div class="stat-value">6 / 12 ms</div><div class="stat-label">latency p50 / p95 — plan target ≤ 300 ms / 1 s</div></div>
+<div class="stat"><div class="stat-value">0.139 Brier</div><div class="stat-label">beats RRR-only baseline (0.148) on held-out 2025–26</div></div>
+</div>
+
 ## Headline results
 
 | Metric | Plan target | Achieved |

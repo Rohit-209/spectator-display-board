@@ -13,7 +13,7 @@ reproducible.
 match 1178418. Five fixed zones: A score strip, B live players,
 C rotating feature panel (phase comparison shown), D win-probability
 gauge (37 % RR, 63 % KKR), E AI-insight ticker. QR links to the phone
-companion.](figures/board-full.png){width=62%}
+companion.](figures/board-full.png){width=96%}
 
 **Stats correctness.** `applyEvent(state, event)` is pure, so the test
 harness (`npm test`, `test/stats-correctness.test.ts`) replays each

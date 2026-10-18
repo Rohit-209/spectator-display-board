@@ -2,6 +2,16 @@
 
 # Section 7 — One-Page Summary
 
+<div class="callout">
+Venue-grade cricket display board combining real-time stats, a trained win-probability model, and a numerically-validated LLM commentator. Replay-mode build on open IPL data; reproducible, testable, and ready to deploy on a projector without a scorer feed.
+</div>
+
+<div class="stat-row">
+<div class="stat"><div class="stat-value">1,243 / 1,243</div><div class="stat-label">matches pass the stats-engine correctness harness</div></div>
+<div class="stat"><div class="stat-value">6 / 12 ms</div><div class="stat-label">end-to-end latency p50 / p95 (target ≤ 300 ms / 1 s)</div></div>
+<div class="stat"><div class="stat-value">0.139 Brier</div><div class="stat-label">win-prob vs 0.148 RRR baseline, held-out 2025–26</div></div>
+</div>
+
 **Problem.** Spectators at live cricket matches see a thin slice of
 the rich data that broadcast viewers enjoy. Stadium scoreboards show
 runs and overs; broadcasts show win-probability, player comparisons,
