@@ -54,12 +54,15 @@ standalone bonus page or reference page. Options:
 pandoc --from=gfm --pdf-engine=xelatex \
   -V geometry:margin=20mm -V fontsize=11pt \
   -V linkcolor=blue -V urlcolor=blue \
+  --resource-path=report \
   -o report/report.pdf \
   report/00-cover.md report/01-problem.md report/02-concept.md \
   report/03-assumptions.md report/04-prototype.md report/05-results.md \
-  report/06-reflection.md report/07-summary.md report/08-bonus.md \
-  report/references.md
+  report/06-reflection.md report/07-summary.md
 ```
+
+(§8 bonus and the IEEE references are folded into §7 and §1
+respectively — this keeps the submission at exactly 8 pages.)
 
 - Each file starts with `\newpage` (via raw LaTeX blocks) so Pandoc
   honours the "new page per section" rule.

@@ -51,3 +51,4 @@ next-env.d.ts
 # legacy JSONL logs (superseded by SQLite but may exist locally)
 /data/insight-audit.jsonl
 /data/engagement.jsonl
+report/report.html

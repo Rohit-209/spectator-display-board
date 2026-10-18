@@ -2,44 +2,37 @@
 
 # Section 3 — Assumptions and Data Source
 
-*(Target ~250 words. The rubric expects every borrowed value to have an
-IEEE citation — mark each row below as *literature*, *public database*,
-*manufacturer* or *own estimate*.)*
+## Data source
 
-## 3.1 Data source
+All ball-by-ball match data is drawn from the open **Cricsheet IPL
+corpus** [3] — 1,243 matches from 2008 through 2026, consistent JSON
+schema, free and attribution-only. One match (IPL 2019 KKR v RR,
+#1178418) was selected as the standard replay for all testing and
+screenshots: Eden Gardens, 25 Apr 2019, chased in 20.2 overs for a
+3-wicket RR win. The match is old enough that recent participants are
+unlikely to recall the result and new enough that players feel
+familiar.
 
-- **Ball-by-ball match data:** Cricsheet IPL corpus, 1,243 matches
-  from 2008 through 2026. Free, open, consistent JSON schema.
-  *Public database — [Ref 3].*
-- **Match used for the usability study:** IPL 2019 KKR v RR
-  (match #1178418), Eden Gardens, 25 Apr 2019 — chased in 20.2 overs,
-  a 3-wicket win for RR. Chosen for a close chase, a losing-side
-  top scorer, and a season recent enough to feel familiar but far
-  enough from 2026 that participants are unlikely to remember the
-  result.
-
-## 3.2 Assumptions
+## Assumptions
 
 | # | Assumption | Value | Source |
 |---|------------|------:|--------|
-| A1 | Full T20 innings length | 20 overs | ICC playing conditions |
-| A2 | Realistic average inter-ball interval at 1× speed | ~35 s | Own estimate from TV broadcasts |
-| A3 | Minimum legible text height for a projected 1920×1080 board at 10 m | ≈ 40 px | Industry rule-of-thumb (letter height ≈ 1/150 of viewing distance), own estimate for projector pixel density |
-| A4 | Season split for the win-probability model | Train ≤ 2024, test 2025 + 2026 | Own choice; avoids within-match leakage |
-| A5 | Latency measurement equates "render time" with the time the board commits a new state to the DOM | — | Own estimate; a true photon-to-eye measure would need external instrumentation |
-| A6 | LLM insights are safe to show if every number appears in the fact pack | — | Design choice informed by hallucination-mitigation literature [Ref 2] |
-| A7 | "Spectator engagement" in a lab setting approximates (but under-samples) real-ground engagement | — | Design limitation; stated openly in §5 |
+| A1 | Full T20 innings length | 20 overs | ICC rules |
+| A2 | Realistic 1× inter-ball interval | ~35 s | Own, from TV |
+| A3 | Minimum legible text at 10 m on a 1920 × 1080 projection | ≈ 40 px | ≈ dist/150, own est. |
+| A4 | Win-prob train/test split | train ≤ 2024, test 2025 + 2026 | Own; no within-match leak |
+| A5 | Latency = server-emit to client-DOM-commit | — | Own instrumentation |
+| A6 | LLM safe if every number appears in the fact pack | — | Design, per [2] |
 
-## 3.3 Scope limits
+## Scope limits
 
-- **Not** a live-API build. Everything is replay-mode so every
-  participant sees the identical match. Path to a live feed is
-  discussed in §6.
-- **Not** a mobile-first spectator app — the board is designed for a
-  venue projector / jumbotron. A phone companion exists for detailed
-  stats on demand.
-- **Not** evaluated with a stadium crowd. §5 presents only the lab
-  usability study; the on-field engagement study is scoped as future
-  work.
+- **Replay-only**, not a live-API build — repeatable at the cost of
+  one-way novelty.
+- **Venue projector**, not a mobile-first app — the phone companion
+  is a stats sidekick, not a replacement for the shared screen.
+- **Lab-scale usability only.** The §5.3 engagement study of the
+  original plan (two 15–25 person screenings on a projector) is
+  scoped out of this submission under the 8-page cap; materials for
+  it live in `study/` of the repo for a future run.
 
-*(All numeric references in square brackets map to `references.md`.)*
+*Bracketed numbers map to the IEEE list in §1.*

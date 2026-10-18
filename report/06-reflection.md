@@ -2,38 +2,36 @@
 
 # Section 6 — Reflection and Future Scope
 
-## Reflection (strict ≤ 100 words)
+## Reflection (≤ 100 words)
 
-*(Draft; rewrite in your own voice. Current count ≈ 95 words.)*
-
-The hardest decision wasn't technical — it was committing to replay
-mode. Choosing a repeatable historical feed removed glamour but let
-every design claim become measurable: identical conditions across
-participants, latency timestamps on every event, and corpus-level
-regression tests against official scorecards. The second lesson was
-that structural constraints beat model tuning when AI touches a public
-screen: a fact-pack guard-rail removed hallucinations entirely,
-whereas prompt-engineering alone could not. Finally, "glanceable"
-is harder than "beautiful"; cutting Zone B of its 4s / 6s / extras
-numbers improved the board more than any font change.
+The hardest decision was not technical but methodological: committing
+to replay mode. A historical feed removed the glamour of "live" but
+let every design claim become measurable — identical conditions
+across users, latency timestamps on every event, corpus-level tests
+against official scorecards. The second lesson was that structural
+constraints beat prompt tuning when an LLM touches a public screen:
+a fact-pack guard-rail removed hallucinations entirely, while prompt
+engineering alone could not. Finally, "glanceable" is harder than
+"beautiful"; cutting Zone B of 4s / 6s / extras helped more than any
+font change.
 
 ## Future scope
 
-- **Live scorer input.** A phone-based "one person taps the delivery
-  type" entry mode would move the system out of replay-only without
-  needing a paid API. Thinnest possible UI, offline-capable.
-- **Multi-sport back-end.** The stats engine's `applyEvent` pattern
-  generalises; football possession, badminton rallies, and kabaddi
-  raids all fit the same reducer-plus-SSE architecture.
-- **Outdoor LED hardware test.** The current legibility work targets
-  a 1920 × 1080 indoor projector. The design rules change on
-  high-brightness outdoor LED panels — different contrast, different
-  minimum stroke widths.
-- **Personalisation on the companion page.** Follow-your-player,
-  betting-market-style markets, and fantasy-league overlays are
-  natural extensions once a stable base board is deployed.
-- **Automated storytelling model.** A fine-tuned small model that
-  decides *which* insight is most interesting given the current
-  context, instead of today's rule-based trigger priority.
+- **Live scorer input.** A phone app in which a volunteer taps the
+  delivery type each ball would move the system out of replay mode
+  without needing a paid data feed.
+- **Multi-sport back-end.** The pure-reducer `applyEvent` pattern
+  generalises; football possession, badminton rallies and kabaddi
+  raids all fit the same event-folding architecture.
+- **Outdoor LED hardware test.** Current legibility work targets an
+  indoor projector; high-brightness LED video walls change contrast,
+  stroke-width and minimum font-size rules.
+- **Model-selected narrative.** A small fine-tuned model that ranks
+  triggers by current context would replace the fixed trigger
+  priority with a learned policy.
+- **Audience engagement at scale.** Pair the board with a mobile
+  companion personalised to the user's followed players and track
+  dwell time, scan rate and panel focus; the engagement-event
+  pipeline already written (`/api/engagement`) is wired for this.
 - **Spectator-held AR.** Point a phone at the big screen; receive the
-  insight ticker in your home language.
+  insight ticker in the user's home language.
