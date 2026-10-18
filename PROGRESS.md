@@ -61,45 +61,81 @@ Project plan: `../Display_Board_Plan.pdf`. Code lives in this `board/` dir.
   (10, 12, 17), a filled recall-quiz with ground-truth answers for
   Q1–Q4, and a run-sheet README that lists the two blanks (Q5 insight
   list, Q6 win-prob bucket) that must be filled during the dry-run.
+- **Report figures auto-captured** —
+  `scripts/capture-screenshots.ts` runs a headless Chromium against a
+  live dev server, loads match 1178418, seeks to over 10 of the chase,
+  plays at 20× with admin + board + mobile tabs open to accumulate
+  real latency samples, then pauses and screenshots. Produces 7 PNGs
+  into `report/figures/`:
+  - `board-full.png` — Zones A–E mid-chase (RR 98/4, 37 % win-prob,
+    template wicket insight)
+  - `board-worm.png` / `board-manhattan.png` / `board-phase.png` —
+    three Zone C rotations of the same pause
+  - `admin-dashboard.png` — centre-cropped (1600×1340) to show live
+    state, latency p50 6 ms / p95 12 ms over 17 samples, insight
+    audit 7 triggers → 7 template fallbacks (no LLM key during
+    capture), engagement counters
+  - `companion-mobile.png` / `companion-batting.png` — `/m` at
+    iPhone 14 Pro viewport
+  - `calibration.png` — copied from `model/out/`
+- **Report PDF built at 8-page cap** — `scripts/build-report.ts`
+  renders the 8 markdown sections via `marked`, honours Pandoc
+  `{width=XX%}` on figures, inserts explicit page-break-after
+  spacers between sections (Chrome's `break-before: page` was being
+  silently ignored mid-document), and prints a 1920×2715 pt A4 PDF
+  via headless Chromium. Result: `report/report.pdf` (382 KB,
+  **8 pages, one section per page**). Build takes ~3 s; no Pandoc or
+  LaTeX install required.
+- **GitHub repo live and public** —
+  <https://github.com/Rohit-209/spectator-display-board>. All six
+  commits authored under `Rohit-209 <rohitraj251204@gmail.com>` after
+  a one-time `git filter-branch` to fix the earlier
+  Rohits-MacBook-Air.local author line.
 
-## Assignment-2 context (updated 2026-10-17)
+## Assignment-2 context
 
-- **Deadline: 31 October 2026** (confirmed, ~14 days away).
-- **Hard 8-page cap, one page per section.** The brief's "12-15 pages
-  / 3500 words" line was overridden by the first-paragraph cap +
-  per-section-new-page rule. Report now budgets ~2000 words of
-  self-written text total.
-- Demo video is **deferred** — §8 bonus still claims +10 % via AI/ML
-  integration + public code.
-- **Report figures auto-captured.** `scripts/capture-screenshots.ts`
-  produces 7 PNGs under `report/figures/` from a 20× replay of match
-  1178418. Admin dashboard shows p50 6 ms / p95 12 ms over 17 samples,
-  insight audit 7/7 template fallbacks (no LLM key in capture env).
-- Scaffold lives in `report/`; see `report/README.md` for the updated
-  section map, folded §8 strategy, and writing order.
+- **Deadline: 31 October 2026** (confirmed).
+- **Hard 8-page cap, one page per section** — the brief's
+  "12-15 pages / 3500 words" line was overridden by the first-paragraph
+  cap + the per-section-new-page rule. Current PDF hits exactly 8.
+- Demo video is **deferred** — §8 bonus still claims +10 % via trained
+  ML model + validated-LLM pipeline + public reproducible repo.
+- Vercel deployment is **not planned** — SQLite + in-memory replay
+  state + SSE timeout make it a bad fit. If a live demo URL is wanted
+  later, Railway / Fly.io / Render are the realistic hosts; a
+  `cloudflared tunnel` from a laptop is the quickest "show someone
+  once" path.
+- §8 bonus and references were folded into §7 and §1 respectively to
+  fit the 8-page cap. `report/08-bonus.md` and `report/references.md`
+  were deleted; `report/README.md` records this.
 
 ## Start next session here
 
-Pick one of these — in rough order of deadline (14 days to 31 Oct 2026
-if that's the real due date):
+Pick one of these — in rough order of impact on the Oct-31 submission:
 
-1. **Trim the §4 and §5 drafts to one page each.** This is the single
-   highest-leverage work (50 % of marks). Current drafts are 2-3x too
-   long. Decide which two figures go in §4 (recommend `board-full.png`
-   + `admin-dashboard.png`) and which one in §5 (`calibration.png`).
-2. **Redraw the §2 architecture diagram** in Excalidraw / Figma;
-   export to `report/figures/architecture.png`. ~20 min.
-3. **Fill in the two IEEE references** in §1 and the GitHub URL +
-   student IDs in §0 and §8-folded line.
-4. **Write the report prose** across all 8 sections — ~6–8 h total,
-   compile with Pandoc per `report/README.md` or paste into Word.
-5. **(Optional)** Re-capture `admin-dashboard.png` with
-   `AI_GATEWAY_API_KEY` set so the insight-audit panel shows real LLM
-   vs template vs rejection stats instead of 7/7 template fallback.
-6. **(Optional)** Pilot the lab study (`study/pilot/README.md`) if
-   time allows — doesn't fit on the §5 page but strengthens defence
-   in the viva.
-7. **Demo video** — deferred.
+1. **Fill the known blanks** — ~45 min total, 100 % must-do:
+   - `report/00-cover.md`: two student names + ID numbers + filename
+   - `report/01-problem.md`: two IEEE references (reference themes
+     already suggested in-file)
+   - rebuild with `npx tsx scripts/build-report.ts` after each edit
+2. **Draw the §2 architecture diagram** — `report/02-concept.md`
+   currently references `figures/architecture.png` which doesn't
+   exist. ASCII description inside §2 is OK as a backup but a drawn
+   diagram scores better. ~20 min in Excalidraw.
+3. **(Optional, bonus-strengthening)** Set `AI_GATEWAY_API_KEY` in
+   `.env.local` and re-run `npx tsx scripts/capture-screenshots.ts`
+   so the admin screenshot shows real LLM vs template vs rejection
+   stats instead of 7/7 template fallback. Also captures a true LLM
+   insight in Zone E of the board shot.
+4. **(Optional, viva-strengthening)** Pilot the lab study
+   (`study/pilot/README.md`) — ~1 h with a lab-mate. Doesn't fit on
+   the §5 page but gives real SUS/UES numbers to cite in the viva.
+5. **Capture the missing feature screenshots for an appendix / viva
+   deck** — Top Scorers panel of Zone C, Companion Bowling tab,
+   Companion Charts tab. Edit `scripts/capture-screenshots.ts` or
+   grab manually. Not needed for the PDF submission.
+6. **Demo video / Vercel-free live URL** — deferred; both deliberately
+   out of scope for the Oct-31 submission.
 
 ## Commands cheat sheet
 
@@ -110,6 +146,11 @@ npm run test:full            # 20 random matches from model/data/raw
 npm run db:ingest            # populate data/board.db from Cricsheet
 npm run build                # Next.js build (also typechecks)
 cd model && source .venv/bin/activate && python train.py   # retrain win-prob
+
+# report workflow
+npx tsx scripts/capture-screenshots.ts   # with dev server running, ~45 s
+npx tsx scripts/build-report.ts          # markdown → report/report.pdf, ~3 s
+open report/report.pdf                   # macOS Preview
 ```
 
 ## Gotchas
