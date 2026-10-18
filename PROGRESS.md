@@ -83,9 +83,23 @@ Project plan: `../Display_Board_Plan.pdf`. Code lives in this `board/` dir.
   `{width=XX%}` on figures, inserts explicit page-break-after
   spacers between sections (Chrome's `break-before: page` was being
   silently ignored mid-document), and prints a 1920×2715 pt A4 PDF
-  via headless Chromium. Result: `report/report.pdf` (382 KB,
-  **8 pages, one section per page**). Build takes ~3 s; no Pandoc or
-  LaTeX install required.
+  via headless Chromium. Result: `report/report.pdf`
+  (**8 pages, 480 KB, one section per page**). Build takes ~3 s; no
+  Pandoc or LaTeX install required.
+- **Report visual redesign** (commit `4180b31`) — teal accent system,
+  running header + footer on every page (project title at top,
+  `github.com/Rohit-209/...` + "Page X of 8" at bottom). New CSS
+  primitives `.callout` (teal accent-left box) and `.stat-row`
+  (3-column gradient stat cards). Cover was 15 % full → now a proper
+  front page: 38 pt title, subtitle, brief-callout, Team/Focus/
+  Submission grid, three stat cards (correctness / latency / Brier),
+  hero board screenshot. §1 adds a problem-statement callout; §5
+  and §7 add stat-rows above their tables; §4 Figure 1 enlarged to
+  96 % so the board dominates the page. H1s render as filled teal
+  bands; tables get green headers with zebra striping; code blocks
+  dark-on-light. §1 references filled with real papers:
+  **[1] Cricsheet** (web) + **[2] Lewis et al., "Retrieval-Augmented
+  Generation…", NeurIPS 2020**.
 - **GitHub repo live and public** —
   <https://github.com/Rohit-209/spectator-display-board>. All six
   commits authored under `Rohit-209 <rohitraj251204@gmail.com>` after
@@ -111,31 +125,38 @@ Project plan: `../Display_Board_Plan.pdf`. Code lives in this `board/` dir.
 
 ## Start next session here
 
-Pick one of these — in rough order of impact on the Oct-31 submission:
+The PDF is submission-ready **except for a handful of named blanks**
+on the cover. Impact order for the Oct-31 Nalanda upload:
 
-1. **Fill the known blanks** — ~45 min total, 100 % must-do:
-   - `report/00-cover.md`: two student names + ID numbers + filename
-   - `report/01-problem.md`: two IEEE references (reference themes
-     already suggested in-file)
-   - rebuild with `npx tsx scripts/build-report.ts` after each edit
-2. **Draw the §2 architecture diagram** — `report/02-concept.md`
-   currently references `figures/architecture.png` which doesn't
-   exist. ASCII description inside §2 is OK as a backup but a drawn
-   diagram scores better. ~20 min in Excalidraw.
-3. **(Optional, bonus-strengthening)** Set `AI_GATEWAY_API_KEY` in
+1. **Fill the cover blanks** — ~5 min, must-do:
+   - `report/00-cover.md`: `[Student 1 Name]` / `[ID 1]` /
+     `[Student 2 Name]` / `[ID 2]` / `[ID1]_[ID2]_SE_Assignment2.pdf`
+   - rebuild with `npx tsx scripts/build-report.ts`
+2. **Verify the two IEEE refs are real papers** — both are *correctly
+   cited*, but spot-check the Lewis et al. 2020 RAG paper is still
+   the version you want to cite. ~5 min.
+3. **(Optional) Draw the §2 architecture diagram** —
+   `report/02-concept.md` currently uses an inline prose description
+   plus an ASCII block in §2 body. A proper drawn
+   `figures/architecture.png` would score better in §2; ~20 min in
+   Excalidraw.
+4. **(Optional, bonus-strengthening)** Set `AI_GATEWAY_API_KEY` in
    `.env.local` and re-run `npx tsx scripts/capture-screenshots.ts`
-   so the admin screenshot shows real LLM vs template vs rejection
-   stats instead of 7/7 template fallback. Also captures a true LLM
-   insight in Zone E of the board shot.
-4. **(Optional, viva-strengthening)** Pilot the lab study
-   (`study/pilot/README.md`) — ~1 h with a lab-mate. Doesn't fit on
-   the §5 page but gives real SUS/UES numbers to cite in the viva.
-5. **Capture the missing feature screenshots for an appendix / viva
-   deck** — Top Scorers panel of Zone C, Companion Bowling tab,
-   Companion Charts tab. Edit `scripts/capture-screenshots.ts` or
-   grab manually. Not needed for the PDF submission.
-6. **Demo video / Vercel-free live URL** — deferred; both deliberately
-   out of scope for the Oct-31 submission.
+   so the admin crop shows real LLM vs template vs rejection stats
+   instead of 7/7 template fallback. Hero board shot would then
+   display an LLM-sourced insight instead of a template.
+5. **(Optional, viva-strengthening)** Pilot the lab study
+   (`study/pilot/README.md`) — ~1 h with a lab-mate. Gives real SUS /
+   UES numbers to cite in the viva even though they won't fit on §5.
+6. **Deferred / out of scope for Oct-31**: 3-minute demo video,
+   Vercel/Railway live URL.
+
+### Submission checklist
+
+- [ ] Cover: student names, IDs, filename replaced
+- [ ] `npx tsx scripts/build-report.ts` → `report/report.pdf` fresh
+- [ ] Rename PDF to `<ID1>_<ID2>_SE_Assignment2.pdf`
+- [ ] Upload on Nalanda before 31 Oct 2026 23:59 IST
 
 ## Commands cheat sheet
 
